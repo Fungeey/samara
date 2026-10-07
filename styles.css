@@ -126,3 +126,7 @@ nav .logo,nav ul{background:rgba(255,255,255,.5);border-color:rgba(255,255,255,.
 nav .logo span{color:var(--muted)}
 nav ul a{color:var(--muted)}
 nav ul a:hover{color:var(--ink)}
+nav .logo,nav ul{background:rgba(255,255,255,.66)}
+nav ul a{color:var(--ink);font-weight:500}
+nav ul a:hover{color:var(--leaf-d)}
+nav .logo span{color:#4a4d48}
