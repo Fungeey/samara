@@ -172,3 +172,6 @@ footer.in>.hr{transform:scaleX(1)}
 .js .hero.in:before,.js .hero.in:after{transform:scaleX(1)}
 .js section:before,.js section:after{opacity:0;transform:scale(.3);transition:opacity .6s ease .9s,transform .6s cubic-bezier(.2,.7,.2,1) .9s}
 .js section.in:before,.js section.in:after{opacity:1;transform:none}
+.step{padding-block:112px}
+#features{padding-bottom:0}
+@media(max-width:800px){.step{padding-block:56px}}
