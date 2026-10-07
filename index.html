@@ -124,9 +124,11 @@
 <section class="final" id="download">
   <canvas id="graph" aria-hidden="true"></canvas>
   <div class="wrap">
-    <h2>orchestration at your fingertips</h2>
-    <p class="sub">Samara is coming soon.</p>
-    <a class="btn" href="#download" aria-disabled="true">download for macOS</a>
+    <div class="veil">
+      <h2>orchestration at your fingertips</h2>
+      <p class="sub">Samara is coming soon.</p>
+      <a class="btn" href="#download" aria-disabled="true">download for macOS</a>
+    </div>
   </div>
 </section>
 
@@ -142,49 +144,99 @@
 (() => {
   const sec = document.querySelector('.final'), cv = document.getElementById('graph'), ctx = cv.getContext('2d');
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w, h, dpr, nodes = [], mouse = null, running = false;
-  const LINK = 130, REACH = 150;
+  const GREY = [93, 114, 96, .35], GREEN = [79, 154, 55, 1];
+  const STEP = .08, GROW = .12, LIFE = .7;
+  let w, h, gap, r, cols, rows, ox, oy, runs = [], nextSpawn = 0, running = false;
+  const pos = (c, k) => ({ x: ox + c * gap, y: oy + k * gap });
+  const mix = l => GREY.map((g, i) => g + (GREEN[i] - g) * l);
+  const rgba = a => `rgba(${a[0]},${a[1]},${a[2]},${a[3]})`;
+  const clamp = v => Math.min(1, Math.max(0, v));
   function size() {
-    dpr = devicePixelRatio || 1; w = sec.clientWidth; h = sec.clientHeight;
+    const dpr = devicePixelRatio || 1; w = sec.clientWidth; h = sec.clientHeight;
     cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.round(w * h / 9000);
-    nodes = Array.from({ length: n }, () => ({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, r: 2 + Math.random() * 3 }));
+    gap = w < 700 ? 30 : 40; r = gap * .2;
+    cols = Math.max(2, Math.floor(w / gap)); rows = Math.max(2, Math.floor(h / gap));
+    ox = (w - (cols - 1) * gap) / 2; oy = (h - (rows - 1) * gap) / 2;
+    runs = [];
   }
+  function generate(c0, k0, ambient) {
+    const n = 1 + Math.floor(Math.random() * 10), room = [c0, cols - 1 - c0];
+    let dir = Math.random() < .5 ? 1 : -1;
+    if (room[dir > 0 ? 1 : 0] < n && room[dir > 0 ? 0 : 1] > room[dir > 0 ? 1 : 0]) dir = -dir;
+    const nodes = [{ c: c0, k: k0, at: 0 }], edges = [];
+    const free = (c, k) => c >= 0 && c < cols && k >= 0 && k < rows && !nodes.some(a => a.c === c && a.k === k);
+    const shuffle = a => a.sort(() => Math.random() - .5);
+    for (let i = 1; i <= n; i++) {
+      const last = nodes[nodes.length - 1];
+      const next = shuffle([-1, 0, 1]).map(d => [last, last.c + dir, last.k + d]).find(([, c, k]) => free(c, k));
+      if (!next) break;
+      const from = nodes.indexOf(next[0]), at = (i - 1) * STEP;
+      edges.push({ from, to: nodes.length, at, back: false });
+      nodes.push({ c: next[1], k: next[2], at: at + GROW });
+    }
+    const life = ambient ? .3 : LIFE, fade = 0;
+    return { nodes, edges, ambient, life, fade, t0: performance.now(), speed: ambient ? .3 : 1, alpha: ambient ? .85 : 1, end: Math.max(...nodes.map(n => n.at), ...edges.map(e => e.at + GROW)) + life + fade };
+  }
+  const bezier = (p, u) => { const v = 1 - u; return { x: v ** 3 * p[0].x + 3 * v * v * u * p[1].x + 3 * v * u * u * p[2].x + u ** 3 * p[3].x, y: v ** 3 * p[0].y + 3 * v * v * u * p[1].y + 3 * v * u * u * p[2].y + u ** 3 * p[3].y }; };
+  function curve(run, e) {
+    const a = pos(run.nodes[e.from].c, run.nodes[e.from].k), b = pos(run.nodes[e.to].c, run.nodes[e.to].k);
+    if (e.back) { const o = e.bow * gap * .9; return [a, { x: a.x, y: a.y + o }, { x: b.x, y: b.y + o }, b]; }
+    const d = b.x - a.x;
+    return [a, { x: a.x + d * .8, y: a.y }, { x: a.x + d * .2, y: b.y }, b];
+  }
+  const wave = (p, now) => still ? 1 : .65 + .35 * Math.sin(p.x * .008 + p.y * .012 - now * .0012);
+  const age = (run, t, at) => t - at < run.life ? 1 : 0;
   function frame() {
     ctx.clearRect(0, 0, w, h);
-    for (const a of nodes) {
-      a.x += a.vx; a.y += a.vy;
-      if (a.x < 0 || a.x > w) a.vx *= -1;
-      if (a.y < 0 || a.y > h) a.vy *= -1;
-      if (mouse) {
-        const dx = mouse.x - a.x, dy = mouse.y - a.y, d = Math.hypot(dx, dy);
-        if (d < REACH && d > 1) { a.x += dx / d * (1 - d / REACH) * .22; a.y += dy / d * (1 - d / REACH) * .22; }
-      }
+    const now = performance.now();
+    runs = runs.filter(run => still || (now - run.t0) / 1000 * run.speed <= run.end);
+    const lit = new Set(runs.flatMap(run => { const tt = still ? run.end - run.fade - .01 : (now - run.t0) / 1000 * run.speed; return run.nodes.filter(n => tt >= n.at && age(run, tt, n.at)).map(n => n.c + ',' + n.k); }));
+    for (let c = 0; c < cols; c++) for (let k = 0; k < rows; k++) {
+      if (lit.has(c + ',' + k)) continue;
+      const p = pos(c, k);
+      ctx.fillStyle = rgba([GREY[0], GREY[1], GREY[2], GREY[3] * wave(p, now)]);
+      ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, 7); ctx.fill();
     }
-    for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
-      const a = nodes[i], b = nodes[j], d = Math.hypot(a.x - b.x, a.y - b.y);
-      if (d < LINK) { ctx.strokeStyle = `rgba(60,80,60,${.16 * (1 - d / LINK)})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
-    }
-    for (const a of nodes) {
-      let t = 0;
-      if (mouse) {
-        const d = Math.hypot(mouse.x - a.x, mouse.y - a.y);
-        if (d < REACH) {
-          t = 1 - d / REACH;
-          ctx.strokeStyle = `rgba(79,154,55,${.6 * t})`; ctx.lineWidth = 1.2;
-          ctx.beginPath(); ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(a.x, a.y); ctx.stroke();
-        }
-      }
-      ctx.fillStyle = t ? `rgba(79,154,55,${.4 + .6 * t})` : 'rgba(93,114,96,.35)';
-      ctx.beginPath(); ctx.arc(a.x, a.y, a.r + t * 1.5, 0, 7); ctx.fill();
-      if (t > .5) { ctx.strokeStyle = `rgba(79,154,55,${t * .55})`; ctx.beginPath(); ctx.arc(a.x, a.y, a.r + 6, 0, 7); ctx.stroke(); }
-    }
-    if (running && !still) requestAnimationFrame(frame);
+    for (const run of runs) drawRun(run, still ? run.end - run.fade - .01 : (now - run.t0) / 1000 * run.speed);
   }
-  sec.addEventListener('pointermove', e => { const r = sec.getBoundingClientRect(); mouse = { x: e.clientX - r.left, y: e.clientY - r.top }; if (still) frame(); });
-  sec.addEventListener('pointerleave', () => { mouse = null; if (still) frame(); });
+  function drawRun(run, tt) {
+    const A_ = run.alpha, col = GREEN, green = a => `rgba(${col[0]},${col[1]},${col[2]},${a * A_})`;
+    ctx.lineWidth = 1.5;
+    for (const e of run.edges) {
+      const p = e.back ? 1 : clamp((tt - e.at) / GROW), fade = age(run, tt, e.at); if (!p || !fade) continue;
+      const pts = curve(run, e), A = pts[0], B = pts[3], ra = r * (e.from ? 1 : 2) + 3, rb = r + 5;
+      const line = Array.from({ length: 33 }, (_, i) => bezier(pts, i / 32)).filter(q => Math.hypot(q.x - A.x, q.y - A.y) >= ra && Math.hypot(q.x - B.x, q.y - B.y) >= rb);
+      const m = Math.max(2, Math.ceil(p * line.length)), tip = line[m - 1], prev = line[m - 2];
+      const d = Math.hypot(tip.x - prev.x, tip.y - prev.y) || 1, ux = (tip.x - prev.x) / d, uy = (tip.y - prev.y) / d;
+      ctx.strokeStyle = ctx.fillStyle = `rgba(${GREY[0]},${GREY[1]},${GREY[2]},${.75 * fade * A_})`; ctx.setLineDash(e.back ? [4, 4] : []);
+      ctx.beginPath(); line.slice(0, m).forEach((q, i) => i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.moveTo(tip.x + ux * 6, tip.y + uy * 6); ctx.lineTo(tip.x - ux * 2 - uy * 4, tip.y - uy * 2 + ux * 4); ctx.lineTo(tip.x - ux * 2 + uy * 4, tip.y - uy * 2 - ux * 4); ctx.fill();
+    }
+    run.nodes.forEach((n, i) => {
+      const p = pos(n.c, n.k), fade = age(run, tt, n.at), l = tt >= n.at ? 1 : 0;
+      if (!fade || tt < n.at) return;
+      if (!i) {
+        ctx.strokeStyle = green(fade); ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(p.x, p.y, r * 2, 0, 7); ctx.stroke();
+        ctx.fillStyle = green(fade);
+        ctx.beginPath(); ctx.moveTo(p.x, p.y - r * 1.2); ctx.lineTo(p.x + r * 1.2, p.y); ctx.lineTo(p.x, p.y + r * 1.2); ctx.lineTo(p.x - r * 1.2, p.y); ctx.fill();
+        return;
+      }
+      const c = mix(l); c[3] = ((GREY[3] + (c[3] - GREY[3]) * A_) * fade + GREY[3] * (1 - fade));
+      ctx.fillStyle = rgba(c); ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, 7); ctx.fill();
+    });
+  }
+  function spawn() {
+    const c = Math.floor(Math.random() * cols), k = Math.floor(Math.random() * rows);
+    runs.push(generate(c, k, true));
+  }
+  function loop() {
+    const now = performance.now();
+    if (!still && now > nextSpawn && runs.filter(r => r.ambient).length < 12) { spawn(); spawn(); nextSpawn = now + 300 + Math.random() * 600; }
+    frame(); if (running && !still) requestAnimationFrame(loop);
+  }
   new ResizeObserver(() => { size(); frame(); }).observe(sec);
-  new IntersectionObserver(([e]) => { running = e.isIntersecting; if (running) frame(); }).observe(sec);
+  new IntersectionObserver(([e]) => { running = e.isIntersecting; if (running) loop(); }).observe(sec);
 })();
 </script>
 </body>
