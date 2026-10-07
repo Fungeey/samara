@@ -5,7 +5,7 @@ body{margin:0;position:relative;background:radial-gradient(760px 520px at 90% 10
 a{color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 body:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--grain-page)}
-.navbar{position:sticky;top:0;z-index:10;background:var(--grain),rgba(245,242,230,.55);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--rule)}
+\.navbar{position:sticky;top:0;z-index:10;pointer-events:none}
 section{border-top:1px solid var(--rule)}
 nav{display:flex;align-items:center;justify-content:space-between;height:72px}
 .logo{font-weight:700;font-size:20px;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:8px}
@@ -106,3 +106,12 @@ main:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
 .arc.out.br{left:calc(50% + 560px);border-width:0 0 1px 1px;border-radius:0 0 0 72px}
 @media(max-width:1300px){.arc.out{display:none}}
 .final:before,.final:after{display:none}
+
+nav{height:76px}
+nav>*{pointer-events:auto}
+.logo,nav ul{background:var(--grain),rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.75);border-radius:999px;backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 10px 28px -14px rgba(42,44,41,.35)}
+.logo{padding:9px 20px 9px 16px}
+nav ul{padding:9px 28px}
+nav .btn.sm{padding:11px 20px;box-shadow:0 10px 28px -12px rgba(42,44,41,.5)}
+.logo,nav ul{height:46px;padding-block:0;align-items:center}
+.btn.sm{height:46px}
