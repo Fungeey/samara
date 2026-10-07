@@ -1,7 +1,7 @@
 :root{--bg:#f5f2e6;--surface:#ebeedc;--ink:#1c3324;--muted:#5d7260;--leaf:#4f9a37;--leaf-d:#3b7a28;--line:#d9dcc5;--blossom:#c8505a}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 nav{display:flex;align-items:center;justify-content:space-between;height:72px}
@@ -17,7 +17,7 @@ nav ul a:hover{color:var(--ink)}
 .btn.sm{padding:8px 16px;font-size:14px}
 .btn[aria-disabled=true]{cursor:default}
 .hero{text-align:center;padding:72px 0 40px}
-h1{font-size:clamp(44px,8vw,92px);line-height:1;letter-spacing:-.045em;font-weight:700;margin:0 0 20px}
+h1{font-size:clamp(44px,8vw,92px);line-height:1;letter-spacing:-.04em;font-weight:700;margin:0 0 20px}
 h1 em{font-style:normal;color:var(--leaf)}
 .lede{font-size:clamp(18px,2.2vw,22px);color:var(--muted);max-width:620px;margin:0 auto 32px}
 .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
