@@ -274,15 +274,6 @@
     el.classList.add('reveal');
   });
   once(targets, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }, el => el.classList.add('in'));
-  const main = document.querySelector('main');
-  let ticking = false;
-  const draw = () => {
-    ticking = false;
-    const top = main.getBoundingClientRect().top + scrollY;
-    main.style.setProperty('--draw', Math.max(0, Math.min(main.offsetHeight, scrollY + innerHeight * 0.92 - top)) + 'px');
-  };
-  const queue = () => { if (!ticking) { ticking = true; requestAnimationFrame(draw); } };
-  addEventListener('scroll', queue, { passive: true }); addEventListener('resize', queue); draw();
 })();
 </script>
 </body>
