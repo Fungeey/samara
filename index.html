@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Samara</title>
+<meta name="description" content="Samara is a macOS box and command over your Claude Code sessions: find any session, start workers, and watch a feature's orchestrator and workers at a glance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#"><i></i>samara</a>
+    <ul>
+      <li><a href="#features">features</a></li>
+      <li><a href="#walkthrough">walkthrough</a></li>
+      <li><a href="#install">install</a></li>
+      <li><a href="https://github.com/Fungeey/samara/issues">issues</a></li>
+    </ul>
+    <a class="btn sm" href="#download" aria-disabled="true">download</a>
+  </nav>
+
+  <header class="hero">
+    <h1>orchestration<br>at your <em>fingertips</em></h1>
+    <p class="lede">Samara is a box on <kbd>⌃⌥Space</kbd> over all your Claude Code sessions. Find any session, start a worker, and watch a whole feature get built.</p>
+    <div class="cta">
+      <a class="btn" href="#download" aria-disabled="true">download for macOS</a>
+      <a class="btn ghost" href="#walkthrough">watch it work →</a>
+    </div>
+    <p class="note">macOS 14 or later · free · coming soon</p>
+    <div class="shot">
+      <video src="assets/hero.mp4" poster="assets/hero-poster.jpg" autoplay muted loop playsinline></video>
+    </div>
+  </header>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="eyebrow">how it works</div>
+    <h2>one box. every session.</h2>
+    <p class="sub">Samara reads Claude Code's own files, so there is nothing to set up per repo.</p>
+
+    <div class="step">
+      <div class="copy">
+        <div class="num">01</div>
+        <h3>see all your work at a glance</h3>
+        <p>Every repo and feature as a dot. Click one to drop into its sessions.</p>
+        <ul class="points">
+          <li><b>Grouped by repo</b> from Claude Code's own session files</li>
+          <li><b>Type to filter</b> features, repos and sessions</li>
+          <li><b>Type <code>&lt;repo&gt; &lt;prompt&gt;</code></b> to start a worker there</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="assets/step-overview.jpg" alt="The Samara box showing repos and features as a graph" loading="lazy"></div>
+    </div>
+
+    <div class="step">
+      <div class="copy">
+        <div class="num">02</div>
+        <h3>watch a feature's workers</h3>
+        <p>Each feature has an orchestrator and numbered workers: scout, scope, build, verify, review, ship.</p>
+        <ul class="points">
+          <li><b>Who handed work to whom</b>, drawn as a graph</li>
+          <li><b>Live status</b> and the last message of the selected worker</li>
+          <li><b>Workers run as</b> <code>claude --bg</code>, watched in tmux</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="assets/step-graph.jpg" alt="A feature's orchestrator and workers as a graph" loading="lazy"></div>
+    </div>
+
+    <div class="step">
+      <div class="copy">
+        <div class="num">03</div>
+        <h3>talk to any worker</h3>
+        <p>Type and press return. Your text is sent to the worker, and queues while it is busy.</p>
+        <ul class="points">
+          <li><b>Resume</b> a session that has exited</li>
+          <li><b>Open</b> its terminal with return on an empty field</li>
+          <li><b>Dictate</b> with <kbd>⌘M</kbd></li>
+        </ul>
+      </div>
+      <div class="shot"><img src="assets/step-workers.jpg" alt="A worker's status and last message in the Samara box" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="walkthrough" class="band">
+  <div class="wrap">
+    <div class="eyebrow">walkthrough</div>
+    <h2>see it work</h2>
+    <p class="sub">A minute with Samara: jump between features, watch workers hand off, step into a session.</p>
+    <div class="shot" style="margin-top:48px">
+      <video src="assets/walkthrough.mp4" poster="assets/walkthrough-poster.jpg" controls preload="none" playsinline></video>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">not just a launcher</div>
+    <h2>the rest of the toolbox</h2>
+    <div class="grid3">
+      <div class="card"><span class="tick">✓</span><h4>a <code>samara</code> command</h4><p>Everything in the box is also a command: list, spawn, prompt, wait, result, graph.</p></div>
+      <div class="card"><span class="tick">✓</span><h4>several Claude logins</h4><p>Map repos to accounts. Samara starts and attaches to each job under the right login.</p></div>
+      <div class="card"><span class="tick">✓</span><h4>extensions</h4><p>Add your own rows to the box: lists, markdown, PRs, workers.</p></div>
+      <div class="card"><span class="tick">✓</span><h4>feature notes</h4><p><kbd>⌘O</kbd> the note, <kbd>⌘P</kbd> the last PR, <kbd>⌘F</kbd> the folder, <kbd>⌘I</kbd> its images.</p></div>
+      <div class="card"><span class="tick">✓</span><h4>voice input</h4><p>Hold a thought, press <kbd>⌘M</kbd>, say the prompt.</p></div>
+      <div class="card"><span class="tick">✓</span><h4>your terminal</h4><p>Opens in Terminal, iTerm, Ghostty or cmux.</p></div>
+    </div>
+
+    <div class="flow">
+      <div><b>the box</b><span>⌃⌥Space</span></div><div class="arr">→</div>
+      <div><b>claude --bg</b><span>one job per worker</span></div><div class="arr">→</div>
+      <div><b>tmux</b><span>watched, resumable</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="install" class="band">
+  <div class="wrap">
+    <div class="eyebrow">install</div>
+    <h2>up in a minute</h2>
+    <p class="sub">Samara builds a small menu-bar app and the <code>samara</code> command, and starts at login.</p>
+    <pre>brew install tmux
+./install</pre>
+    <div class="reqs"><span>macOS 14+</span><span>Claude Code, logged in</span><span>tmux</span></div>
+  </div>
+</section>
+
+<section class="final" id="download">
+  <div class="wrap">
+    <h2>orchestration at your fingertips</h2>
+    <p class="sub">Samara is coming soon.</p>
+    <a class="btn" href="#download" aria-disabled="true">download for macOS</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap fcols">
+    <div><a class="logo" href="#"><i></i>samara</a><p class="copy-r">© 2026 Fungeey. MIT license.</p></div>
+    <div><h5>product</h5><ul><li><a href="#features">features</a></li><li><a href="#walkthrough">walkthrough</a></li><li><a href="#install">install</a></li></ul></div>
+    <div><h5>community</h5><ul><li><a href="https://github.com/Fungeey/samara">GitHub</a></li><li><a href="https://github.com/Fungeey/samara/issues">issues</a></li></ul></div>
+    <div><h5>legal</h5><ul><li><a href="https://github.com/Fungeey/samara/blob/main/LICENSE">license</a></li></ul></div>
+  </div>
+</footer>
+</body>
+</html>
