@@ -130,3 +130,10 @@ nav .logo,nav ul{background:rgba(255,255,255,.66)}
 nav ul a{color:var(--ink);font-weight:500}
 nav ul a:hover{color:var(--leaf-d)}
 nav .logo span{color:#4a4d48}
+
+.hero h1{margin-bottom:0}
+.intro{padding:72px 0 88px;text-align:center}
+.intro .lede{margin-bottom:32px}
+#features{background:rgba(150,185,115,.15)}
+.sand{background:rgba(205,185,125,.17)}
+.final{background:rgba(110,165,70,.13)}
