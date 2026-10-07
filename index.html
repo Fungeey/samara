@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -237,6 +238,19 @@
   }
   new ResizeObserver(() => { size(); frame(); }).observe(sec);
   new IntersectionObserver(([e]) => { running = e.isIntersecting; if (running) loop(); }).observe(sec);
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script>
+(() => {
+  if (!window.Lenis || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 0.9 });
+  (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    const el = id.length > 1 && document.querySelector(id);
+    if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: -90 }); }
+  }));
 })();
 </script>
 </body>
