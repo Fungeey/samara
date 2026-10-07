@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.css">
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js")</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -251,6 +252,36 @@
     const el = id.length > 1 && document.querySelector(id);
     if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: -90 }); }
   }));
+})();
+</script>
+<script>
+(() => {
+  const root = document.documentElement;
+  if (!root.classList.contains('js')) return;
+  const once = (els, opts, fn) => {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { fn(e.target); io.unobserve(e.target); } }), opts);
+    els.forEach(el => io.observe(el));
+  };
+  document.querySelectorAll('section').forEach(s => s.prepend(Object.assign(document.createElement('i'), { className: 'hr' })));
+  once(document.querySelectorAll('section'), { threshold: 0, rootMargin: '0px 0px -12% 0px' }, el => el.classList.add('in'));
+  once(document.querySelectorAll('.step'), { threshold: 0.1 }, el => el.classList.add('in'));
+  once(document.querySelectorAll('.arc'), { threshold: 0 }, el => el.classList.add('in'));
+  const targets = document.querySelectorAll('.statement,.step .copy>*,.step .shot,.points li,section h2,section .sub,.card,.flow>div:not(.arr),pre,.reqs,.final .btn');
+  targets.forEach(el => {
+    const sibs = [...el.parentElement.children].filter(c => c.matches('.statement,.step .copy>*,.step .shot,.points li,section h2,section .sub,.card,.flow>div:not(.arr),pre,.reqs,.final .btn'));
+    el.style.setProperty('--d', Math.min(sibs.indexOf(el) * 0.08, 0.4) + 's');
+    el.classList.add('reveal');
+  });
+  once(targets, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }, el => el.classList.add('in'));
+  const main = document.querySelector('main');
+  let ticking = false;
+  const draw = () => {
+    ticking = false;
+    const top = main.getBoundingClientRect().top + scrollY;
+    main.style.setProperty('--draw', Math.max(0, Math.min(main.offsetHeight, scrollY + innerHeight * 0.92 - top)) + 'px');
+  };
+  const queue = () => { if (!ticking) { ticking = true; requestAnimationFrame(draw); } };
+  addEventListener('scroll', queue, { passive: true }); addEventListener('resize', queue); draw();
 })();
 </script>
 </body>
