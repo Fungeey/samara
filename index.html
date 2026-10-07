@@ -262,8 +262,9 @@
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { fn(e.target); io.unobserve(e.target); } }), opts);
     els.forEach(el => io.observe(el));
   };
-  document.querySelectorAll('section').forEach(s => s.prepend(Object.assign(document.createElement('i'), { className: 'hr' })));
-  once(document.querySelectorAll('section'), { threshold: 0, rootMargin: '0px 0px -12% 0px' }, el => el.classList.add('in'));
+  document.querySelectorAll('section,footer').forEach(s => s.prepend(Object.assign(document.createElement('i'), { className: 'hr' })));
+  once(document.querySelectorAll('section,footer'), { threshold: 0, rootMargin: '0px 0px -12% 0px' }, el => el.classList.add('in'));
+  once(document.querySelectorAll('.hero'), { threshold: 0 }, el => el.classList.add('in'));
   once(document.querySelectorAll('.step'), { threshold: 0.1 }, el => el.classList.add('in'));
   once(document.querySelectorAll('.arc'), { threshold: 0 }, el => el.classList.add('in'));
   const targets = document.querySelectorAll('.statement,.step .copy>*,.step .shot,.points li,section h2,section .sub,.card,.flow>div:not(.arr),pre,.reqs,.final .btn');
