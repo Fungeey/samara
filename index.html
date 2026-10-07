@@ -161,13 +161,13 @@
         const d = Math.hypot(mouse.x - a.x, mouse.y - a.y);
         if (d < REACH) {
           t = 1 - d / REACH;
-          ctx.strokeStyle = `rgba(79,154,55,${.16 * t})`; ctx.lineWidth = 1;
+          ctx.strokeStyle = `rgba(79,154,55,${.6 * t})`; ctx.lineWidth = 1.2;
           ctx.beginPath(); ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(a.x, a.y); ctx.stroke();
         }
       }
-      ctx.fillStyle = t ? `rgba(79,154,55,${.35 + .3 * t})` : 'rgba(93,114,96,.35)';
-      ctx.beginPath(); ctx.arc(a.x, a.y, a.r + t * 1, 0, 7); ctx.fill();
-      
+      ctx.fillStyle = t ? `rgba(79,154,55,${.4 + .6 * t})` : 'rgba(93,114,96,.35)';
+      ctx.beginPath(); ctx.arc(a.x, a.y, a.r + t * 1.5, 0, 7); ctx.fill();
+      if (t > .5) { ctx.strokeStyle = `rgba(79,154,55,${t * .55})`; ctx.beginPath(); ctx.arc(a.x, a.y, a.r + 6, 0, 7); ctx.stroke(); }
     }
     if (running && !still) requestAnimationFrame(frame);
   }
