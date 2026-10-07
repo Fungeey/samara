@@ -86,3 +86,10 @@ section:after{left:calc(50% + 554px)}
 .hero .shot{position:relative}
 .hero:after{bottom:-1px}
 @media(max-width:1180px){section:before,section:after{display:none}}
+
+.arc{position:absolute;width:72px;height:72px;border:0 solid var(--rule2);pointer-events:none}
+.arc.tl{top:0;left:calc(50% - 560px);border-width:1px 0 0 1px;border-top-left-radius:72px}
+.arc.tr{top:0;left:calc(50% + 561px - 72px);border-width:1px 1px 0 0;border-top-right-radius:72px}
+.arc.bl{bottom:0;left:calc(50% - 560px);border-width:0 0 1px 1px;border-bottom-left-radius:72px}
+.arc.br{bottom:0;left:calc(50% + 561px - 72px);border-width:0 1px 1px 0;border-bottom-right-radius:72px}
+@media(max-width:1180px){.arc{display:none}}
