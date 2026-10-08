@@ -291,10 +291,9 @@
   once(document.querySelectorAll('.hero'), { threshold: 0 }, el => el.classList.add('in'));
   once(document.querySelectorAll('.step'), { threshold: 0.1 }, el => el.classList.add('in'));
   once(document.querySelectorAll('.arc'), { threshold: 0 }, el => el.classList.add('in'));
-  const targets = document.querySelectorAll('.statement,.step .copy>*,.step .shot,.points li,section h2,section .sub,.card,.flow>div:not(.arr),pre,.reqs,.final .btn');
+  const targets = document.querySelectorAll('.statement,.step .copy,.step .shot,section h2');
   targets.forEach(el => {
-    const sibs = [...el.parentElement.children].filter(c => c.matches('.statement,.step .copy>*,.step .shot,.points li,section h2,section .sub,.card,.flow>div:not(.arr),pre,.reqs,.final .btn'));
-    el.style.setProperty('--d', Math.min(sibs.indexOf(el) * 0.08, 0.4) + 's');
+    el.style.setProperty('--d', el.matches('.shot') ? '.1s' : '0s');
     el.classList.add('reveal');
   });
   once(targets, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }, el => el.classList.add('in'));
