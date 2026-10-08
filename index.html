@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#1a1d19">
 <title>Samara</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="description" content="Samara is a macOS box and command over your Claude Code sessions: find any session, start workers, and watch a feature's orchestrator and workers at a glance.">
@@ -146,7 +148,7 @@
 (() => {
   const sec = document.querySelector('.final'), cv = document.getElementById('graph'), ctx = cv.getContext('2d');
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const GREY = [93, 114, 96, .35], GREEN = [79, 154, 55, 1];
+  let GREY, GREEN;
   const STEP = .08, GROW = .12, LIFE = .7;
   let w, h, gap, r, cols, rows, ox, oy, runs = [], nextSpawn = 0, running = false;
   const pos = (c, k) => ({ x: ox + c * gap, y: oy + k * gap });
@@ -154,6 +156,8 @@
   const rgba = a => `rgba(${a[0]},${a[1]},${a[2]},${a[3]})`;
   const clamp = v => Math.min(1, Math.max(0, v));
   function size() {
+    const css = getComputedStyle(document.documentElement), rgb = n => css.getPropertyValue(n).split(',').map(Number);
+    GREY = [...rgb('--dot-rgb'), .35]; GREEN = [...rgb('--leaf-rgb'), 1];
     const dpr = devicePixelRatio || 1; w = sec.clientWidth; h = sec.clientHeight;
     cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     gap = w < 700 ? 30 : 40; r = gap * .2;
