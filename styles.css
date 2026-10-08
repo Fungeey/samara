@@ -89,7 +89,7 @@ section:after{left:calc(50% + 554px)}
 .hero{position:relative}
 .hero:before,.hero:after{content:"";position:absolute;left:50%;width:100vw;margin-left:-50vw;height:1px;background:var(--rule)}
 .hero:before{top:0}
-.hero .shot{position:relative;container-type:inline-size;background:url(assets/wallpaper.jpg) center/cover;padding:72px}
+.hero .shot{position:relative;container-type:inline-size;background:url(assets/wallpaper.jpg) center/cover;padding:96px}
 @media(max-width:800px){.hero .shot{padding:14px}}
 .hero .shot video{border-radius:2.5cqw}
 .hero:after{bottom:-1px}
