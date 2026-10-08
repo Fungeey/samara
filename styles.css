@@ -39,6 +39,8 @@ h2{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(38px,5.6vw,68px)
 .step h3 .n{font-size:.45em;font-weight:600;color:var(--leaf-d);margin-right:.9em;vertical-align:.5em;letter-spacing:0}
 .step h3{font-weight:500;font-size:clamp(26px,3vw,36px);line-height:1.1;letter-spacing:-.03em;margin:0 0 14px}
 .step p{color:var(--muted);margin:0 0 18px}
+.step .copy{position:relative;z-index:0}
+.step .copy:before{content:"";position:absolute;z-index:-1;inset:-48px -80px;background:radial-gradient(closest-side,rgba(110,170,60,.34),transparent);pointer-events:none}
 .points{list-style:none;padding:0;margin:0;display:grid;gap:10px}
 .points li{padding-left:26px;position:relative;font-size:16px}
 .points li:before{content:"";position:absolute;left:0;top:.6em;width:10px;height:10px;border-radius:50%;background:var(--leaf)}
