@@ -175,3 +175,8 @@ footer.in>.hr{transform:scaleX(1)}
 .step{padding-block:112px}
 #features{padding-bottom:0}
 @media(max-width:800px){.step{padding-block:56px}}
+
+.js .hero h1:not(.split){opacity:0}
+.hero .w{display:inline-block;white-space:nowrap}
+.hero .ch{opacity:0;animation:chIn .4s ease forwards;animation-delay:calc(var(--i) * 22ms + .15s)}
+@keyframes chIn{to{opacity:1}}

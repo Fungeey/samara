@@ -241,6 +241,30 @@
   new IntersectionObserver(([e]) => { running = e.isIntersecting; if (running) loop(); }).observe(sec);
 })();
 </script>
+<script>
+(() => {
+  if (!document.documentElement.classList.contains('js')) return;
+  const h1 = document.querySelector('.hero h1');
+  let i = 0;
+  const split = node => [...node.childNodes].forEach(n => {
+    if (n.nodeType === 3) {
+      const frag = document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(part => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) return frag.append(part);
+        const w = document.createElement('span');
+        w.className = 'w'; w.setAttribute('aria-hidden', 'true');
+        [...part].forEach(ch => { const s = document.createElement('span'); s.className = 'ch'; s.style.setProperty('--i', i++); s.textContent = ch; w.append(s); });
+        frag.append(w);
+      });
+      n.replaceWith(frag);
+    } else if (n.nodeType === 1 && n.tagName !== 'BR') split(n);
+  });
+  h1.setAttribute('aria-label', h1.innerText.replace(/\s+/g, ' ').trim());
+  split(h1);
+  h1.classList.add('split');
+})();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 <script>
 (() => {
