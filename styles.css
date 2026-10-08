@@ -42,8 +42,6 @@ h2{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(38px,5.6vw,68px)
 .step .copy{position:relative;z-index:0}
 .step .copy:before{content:"";position:absolute;z-index:-1;inset:-120px -160px;background:radial-gradient(closest-side,rgba(110,170,60,.38),transparent 70%);pointer-events:none}
 .step:nth-of-type(-n+2) .copy:before{background:radial-gradient(closest-side,rgba(110,170,60,.48),transparent 70%)}
-.sand h2,#install h2{display:inline-block;position:relative;z-index:0}
-.sand h2:before,#install h2:before{content:"";position:absolute;z-index:-1;inset:-40px -72px;background:radial-gradient(closest-side,rgba(110,170,60,.34),transparent);pointer-events:none}
 .points{list-style:none;padding:0;margin:0;display:grid;gap:10px}
 .points li{padding-left:26px;position:relative;font-size:16px}
 .points li:before{content:"";position:absolute;left:0;top:.6em;width:10px;height:10px;border-radius:50%;background:var(--leaf)}
@@ -91,7 +89,7 @@ section:after{left:calc(50% + 554px)}
 .hero{position:relative}
 .hero:before,.hero:after{content:"";position:absolute;left:50%;width:100vw;margin-left:-50vw;height:1px;background:var(--rule)}
 .hero:before{top:0}
-.hero .shot{position:relative;container-type:inline-size;background:url(assets/wallpaper.jpg) center/cover;padding:52px}
+.hero .shot{position:relative;container-type:inline-size;background:url(assets/wallpaper.jpg) center/cover;padding:72px}
 @media(max-width:800px){.hero .shot{padding:14px}}
 .hero .shot video{border-radius:2.5cqw}
 .hero:after{bottom:-1px}
