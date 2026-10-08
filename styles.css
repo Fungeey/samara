@@ -178,5 +178,5 @@ footer.in>.hr{transform:scaleX(1)}
 
 .js .hero h1:not(.split){opacity:0}
 .hero .w{display:inline-block;white-space:nowrap}
-.hero .ch{opacity:0;animation:chIn .4s ease forwards;animation-delay:calc(var(--i) * 22ms + .15s)}
+.hero .ch{opacity:0;animation:chIn .3s ease forwards;animation-delay:calc(var(--i) * 10ms + .1s)}
 @keyframes chIn{to{opacity:1}}
