@@ -10,7 +10,7 @@
 <meta name="description" content="Samara is a macOS box and command over your Claude Code sessions: find any session, start workers, and watch a feature's orchestrator and workers at a glance.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;1,400&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
 <script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js")</script>
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -30,6 +30,7 @@
 <div class="wrap">
 
   <header class="hero">
+    <i class="hero-rule" aria-hidden="true"></i>
     <i class="arc out tr"></i>
     <h1>orchestration<br>at your <em>fingertips</em></h1>
     <div class="cta">
@@ -91,7 +92,7 @@
   </div>
 </section>
 
-<section class="sand">
+<section>
   <i class="arc bl"></i><i class="arc out tr"></i>
   <div class="wrap">
     <h2>and much much more...</h2>
@@ -255,7 +256,7 @@
         if (/^\s+$/.test(part)) return frag.append(part);
         const w = document.createElement('span');
         w.className = 'w'; w.setAttribute('aria-hidden', 'true');
-        [...part].forEach(ch => { const s = document.createElement('span'); s.className = 'ch'; s.style.setProperty('--i', i++); s.textContent = ch; w.append(s); });
+        [...part].forEach(ch => { const s = document.createElement('span'); s.className = 'ch'; s.style.setProperty('--d', Math.round(Math.random() * 400) + 'ms'); s.textContent = ch; w.append(s); });
         frag.append(w);
       });
       n.replaceWith(frag);
@@ -287,5 +288,4 @@
   once(targets, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }, el => el.classList.add('in'));
 })();
 </script>
-</body>
-</html>
+</body></html>
