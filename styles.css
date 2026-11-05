@@ -112,7 +112,7 @@ footer a:hover{color:var(--leaf-d)}
 .hero h1{text-wrap:balance;max-width:16em}
 .hero .keys{display:flex;gap:6px;margin-top:24px;cursor:pointer}
 .hero .keys kbd{color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-bottom-width:2px;border-radius:6px;padding:1px 8px;font:500 11px/1.4 ui-monospace,Menlo,monospace}
-.hero .box{margin-top:84px;transition:opacity .25s,transform .25s,visibility 0s}
+.hero .box{margin-top:44px;transition:opacity .25s,transform .25s,visibility 0s}
 .hero .box.off{opacity:0;transform:translateY(-8px);visibility:hidden;pointer-events:none;transition:opacity .25s,transform .25s,visibility 0s .25s}
 .hero .try{margin:6px 0 0;font-size:12px;color:#fff}
 .logo .dot{animation:none}
@@ -174,5 +174,6 @@ nav{height:auto;align-items:flex-start;padding-top:40px}
 .hero .keys,.hero .try{align-self:flex-start;margin-left:calc(max(0px,(100vw - 1168px)/2) + 24px)}
 .story-sub{margin:20px 0 0;max-width:30em;font-size:clamp(15px,1.4vw,18px);color:#fff;text-shadow:0 0 10px rgba(var(--bg-rgb),1),0 0 22px rgba(var(--bg-rgb),1),0 0 40px rgba(var(--bg-rgb),.9),0 4px 28px rgba(0,0,0,.6)}
 .story h2{text-shadow:0 0 10px rgba(var(--bg-rgb),1),0 0 22px rgba(var(--bg-rgb),1),0 0 40px rgba(var(--bg-rgb),.9),0 4px 28px rgba(0,0,0,.6)}
-@media(max-width:800px){#features h2,.steer h2,.more h2,.final h2,.story h2,.hero h1{font-size:34px}}
+@media(max-width:800px){#features h2,.steer h2,.more h2,.final h2,.story h2{font-size:34px}.hero h1{font-size:40px;align-self:center;text-align:center;margin-left:0}.hero .keys{align-self:center;margin-left:0}.hero br.desk{display:none}}
 .hero .keys .or{align-self:center;font-size:13px;color:#fff}
+.hero h1{margin-top:40px}
