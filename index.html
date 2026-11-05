@@ -56,10 +56,10 @@
     <h2>Don't just search, steer.</h2>
     <div class="steer-grid">
       <div class="steer-card">
-        <h3><kbd>→</kbd> to steer that session directly</h3>
-        <p>Type and press Return. Your text goes straight into that session.</p>
+        <h3><kbd>→</kbd> to open an agent</h3>
+        <p>Send your agent messages directly from Samara. Your text goes straight into that session.</p>
         <div class="shot"><video src="assets/step-talk.mp4" aria-label="A worker's tool calls in the Samara box, with a prompt field to talk to it" autoplay muted loop playsinline></video></div>
-        <p>Full markdown rendering, recent tool calls and a live update of the terminal. We can even render Claude's recaps so you don't lose any context.</p>
+        <p>See what your agent is doing with full markdown rendering of its latest message, recent tool calls and a live update of the terminal. We even render Claude's recaps so you don't lose any context.</p>
       </div>
       <div class="steer-card">
         <h3><kbd>⏎</kbd> to open in terminal</h3>
@@ -88,11 +88,11 @@
   <div class="carousel" tabindex="0" aria-label="How Samara works">
     <div class="slide">
       <div class="shot"><video src="assets/step-overview.mp4" aria-label="The Samara box showing repos and features as a graph" autoplay muted loop playsinline></video></div>
-      <p>Every repo and feature as a dot. Click one to drop into its sessions.</p>
+      <p>Every Claude session grouped by repo. Click one to drop into its sessions.</p>
     </div>
     <div class="slide">
       <div class="shot"><video src="assets/step-graph.mp4" aria-label="A feature's orchestrator and workers as a graph" autoplay muted loop playsinline></video></div>
-      <p>Cross-agent orchestration. Each feature has an orchestrator and numbered workers, whichever agents run them.</p>
+      <p>Cross-agent orchestration. Each feature has an orchestrator and numbered workers.</p>
     </div>
     <div class="slide">
       <div class="shot"><video src="assets/step-talk.mp4" aria-label="A worker's tool calls in the Samara box, with a prompt field to talk to it" autoplay muted loop playsinline></video></div>
@@ -108,20 +108,14 @@
     <div class="tools">
       <div class="tool"><h4>extensions</h4><p>Add your own rows to the box.</p></div>
       <div class="tool"><h4>feature notes</h4><p><kbd>⌘O</kbd> the note, <kbd>⌘P</kbd> the last PR.</p></div>
-      <div class="tool"><h4>voice input</h4><p>Press <kbd>⌘M</kbd>, say the prompt.</p></div>
+      <div class="tool"><h4>voice input</h4><p>On-device speech to text, from Apple's SpeechAnalyzer.</p></div>
+      <div class="tool"><h4>keyboard native</h4><p>Find, open and steer any session without touching the mouse.</p></div>
+      <div class="tool"><h4>view images and markdown</h4><p>Open screenshots and <code>.md</code> files right in the box.</p></div>
+      <div class="tool"><h4>autosleep</h4><p>Sleep idle Claude sessions, and rewake them the moment you return.</p></div>
     </div>
   </div>
 </section>
 
-<section id="install">
-  <div class="wrap">
-    <h2>Up in a minute</h2>
-    <p class="sub">Samara builds a small menu-bar app and the <code>samara</code> command, and starts at login.</p>
-    <pre>brew install tmux
-./install</pre>
-    <p class="reqs">macOS 14+ · tmux</p>
-  </div>
-</section>
 
 </main>
 <section class="final" id="download">

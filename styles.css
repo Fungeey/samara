@@ -42,6 +42,7 @@ section{padding:160px 0;text-align:center}
 section+section{border-top:1px solid var(--rule)}
 .carousel{--slide:440px;--gutter:max(48px,calc(50% - 536px));display:flex;gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 calc(100% - var(--slide)) 0 var(--gutter);scroll-padding-left:var(--gutter)}
 .carousel::-webkit-scrollbar{display:none}
+#features{background:var(--surface);color:var(--ink)}
 #features h2{font-weight:500;font-size:clamp(22px,3vw,38px);letter-spacing:-.03em;text-align:left;margin:0 0 72px}
 #features .wrap p{color:var(--muted);text-align:left;margin:0 0 32px}
 .slide{flex:0 0 var(--slide);scroll-snap-align:start;text-align:left;opacity:.4;transition:opacity .4s}
@@ -60,16 +61,13 @@ section+section{border-top:1px solid var(--rule)}
 kbd{font:500 13px ui-monospace,Menlo,monospace;background:var(--kbd-bg);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 7px}
 pre{display:inline-block;text-align:left;background:rgba(38,40,37,.84);border:1px solid rgba(255,255,255,.07);color:#e8f0dc;border-radius:16px;padding:22px 26px;font:14px/1.7 ui-monospace,Menlo,monospace;margin:40px 0 0}
 .reqs{color:var(--muted);font-size:14px;margin-top:24px}
-#install{text-align:left}
-#install h2{font-weight:500;font-size:clamp(22px,3vw,38px);letter-spacing:-.03em;margin:0 0 72px}
-#install .sub{margin:0}
 
-.final{position:relative;overflow:hidden;min-height:560px;display:flex;align-items:center;padding:0}
+.final{position:relative;overflow:hidden;min-height:560px;display:flex;align-items:center;padding:0;border-top:1px solid var(--rule)}
 .final .wrap{position:relative;z-index:1;width:100%;pointer-events:none}
 .final .btn{pointer-events:auto}
 .final canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .final{text-align:left}
-.final h2{font-weight:500;font-size:clamp(22px,3vw,38px);letter-spacing:-.03em;margin:0 0 72px}
+.final h2{font-weight:500;font-size:clamp(22px,3vw,38px);letter-spacing:-.03em;margin:0 0 16px}
 .final .sub{margin:0 0 32px}
 .final .veil{display:inline-block;padding:72px 112px;background:radial-gradient(ellipse closest-side,rgba(var(--bg-rgb),.82) 0%,rgba(var(--bg-rgb),.65) 55%,rgba(var(--bg-rgb),0) 100%)}
 
