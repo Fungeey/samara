@@ -66,7 +66,7 @@ pre{display:inline-block;text-align:left;background:rgba(38,40,37,.84);border:1p
 .final .wrap{position:relative;z-index:1;width:100%;pointer-events:none}
 .final .btn{pointer-events:auto}
 .final canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.final{text-align:left}
+.final{text-align:center}
 .final h2{font-weight:500;font-size:clamp(22px,3vw,38px);letter-spacing:-.03em;margin:0 0 16px}
 .final .sub{margin:0 0 32px}
 .final .veil{display:inline-block;padding:72px 112px;background:radial-gradient(ellipse closest-side,rgba(var(--bg-rgb),.82) 0%,rgba(var(--bg-rgb),.65) 55%,rgba(var(--bg-rgb),0) 100%)}
@@ -112,7 +112,7 @@ footer a:hover{color:var(--leaf-d)}
 .hero h1{text-wrap:balance;max-width:16em}
 .hero .keys{display:flex;gap:6px;margin-top:24px;cursor:pointer}
 .hero .keys kbd{color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-bottom-width:2px;border-radius:6px;padding:1px 8px;font:500 11px/1.4 ui-monospace,Menlo,monospace}
-.hero .box{margin-top:28px;transition:opacity .25s,transform .25s,visibility 0s}
+.hero .box{margin-top:84px;transition:opacity .25s,transform .25s,visibility 0s}
 .hero .box.off{opacity:0;transform:translateY(-8px);visibility:hidden;pointer-events:none;transition:opacity .25s,transform .25s,visibility 0s .25s}
 .hero .try{margin:6px 0 0;font-size:12px;color:#fff}
 .logo .dot{animation:none}
@@ -122,7 +122,7 @@ nav .logo .dot{box-shadow:none}
 .navbar{position:fixed}
 .navbar .wrap{max-width:none;padding:0 40px}
 nav{height:auto;align-items:flex-start;padding-top:40px}
-@media(max-width:1439px){.navbar{position:absolute}.navbar .wrap{padding:0 24px}nav{padding-top:32px}}
+@media(max-width:1439px){.navbar{position:absolute}.navbar .wrap{max-width:1168px;margin:0 auto;padding:0 48px}nav{padding-top:32px}}
 .final .btn,.hero .get{background:#f5f2e6;border-color:#f5f2e6;color:#1a1d19;font-weight:600}
 .final .btn:hover,.hero .get:hover{background:#fff;border-color:#fff;color:#1a1d19}
 .hero .get{font-size:14px;padding:9px 20px}
@@ -174,3 +174,5 @@ nav{height:auto;align-items:flex-start;padding-top:40px}
 .hero .keys,.hero .try{align-self:flex-start;margin-left:calc(max(0px,(100vw - 1168px)/2) + 24px)}
 .story-sub{margin:20px 0 0;max-width:30em;font-size:clamp(15px,1.4vw,18px);color:#fff;text-shadow:0 0 10px rgba(var(--bg-rgb),1),0 0 22px rgba(var(--bg-rgb),1),0 0 40px rgba(var(--bg-rgb),.9),0 4px 28px rgba(0,0,0,.6)}
 .story h2{text-shadow:0 0 10px rgba(var(--bg-rgb),1),0 0 22px rgba(var(--bg-rgb),1),0 0 40px rgba(var(--bg-rgb),.9),0 4px 28px rgba(0,0,0,.6)}
+@media(max-width:800px){#features h2,.steer h2,.more h2,.final h2,.story h2,.hero h1{font-size:34px}}
+.hero .keys .or{align-self:center;font-size:13px;color:#fff}

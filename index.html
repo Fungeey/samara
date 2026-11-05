@@ -25,8 +25,7 @@
 
   <header class="hero">
     <h1>Search, steer and <em>orchestrate</em> AI sessions</h1>
-    <div class="keys" id="keys" role="button" tabindex="0" aria-label="Show or hide the search box: Control Option Space"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>Space</kbd></div>
-    <p class="try">Try it now</p>
+    <div class="keys" id="keys" role="button" tabindex="0" aria-label="Show or hide the search box: Control Option Space"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>Space</kbd><span class="or">or</span><kbd>click me</kbd></div>
     <div class="box demo off" id="box" role="search" aria-label="Search sessions">
       <div class="box-head"><span class="mag">&#128269;</span><span class="chev">&rsaquo;</span><span class="ghost" id="ghost" aria-hidden="true"></span><input id="q" type="text" aria-label="Search sessions" autocomplete="off" spellcheck="false"></div>
       <div class="rows" id="rows"></div>
@@ -106,12 +105,12 @@
   <div class="wrap">
     <h2>And much more...</h2>
     <div class="tools">
-      <div class="tool"><h4>extensions</h4><p>Add your own rows to the box.</p></div>
-      <div class="tool"><h4>feature notes</h4><p><kbd>⌘O</kbd> the note, <kbd>⌘P</kbd> the last PR.</p></div>
       <div class="tool"><h4>voice input</h4><p>On-device speech to text, from Apple's SpeechAnalyzer.</p></div>
-      <div class="tool"><h4>keyboard native</h4><p>Find, open and steer any session without touching the mouse.</p></div>
       <div class="tool"><h4>view images and markdown</h4><p>Open screenshots and <code>.md</code> files right in the box.</p></div>
-      <div class="tool"><h4>autosleep</h4><p>Sleep idle Claude sessions, and rewake them the moment you return.</p></div>
+      <div class="tool"><h4>keyboard native</h4><p>Find, open and steer any session without touching the mouse.</p></div>
+      <div class="tool"><h4>second brain</h4><p>Samara can log and manage all context in Obsidian.</p></div>
+      <div class="tool"><h4>config-driven</h4><p>Configure Samara settings via config file.</p></div>
+      <div class="tool"><h4>extensions</h4><p>Integrate Samara with anything you want.</p></div>
     </div>
   </div>
 </section>
@@ -325,8 +324,7 @@ function setShown(on){
   if(reduce){q.value="login";render()}else{box.classList.add("demo");show("");resume()}
 }
 document.addEventListener("keydown",function(e){if(e.code==="Space"&&e.altKey&&(e.ctrlKey||e.metaKey)){e.preventDefault();setShown(!shown)}});
-var keys=document.getElementById("keys");keys.onclick=function(){setShown(!shown)};keys.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();setShown(!shown)}};
-new IntersectionObserver(function(es){onscreen=es[0].isIntersecting;if(!onscreen){pause()}else if(!user){resume()}}).observe(box);
+var keys=document.getElementById("keys");keys.onclick=function(){setShown(!shown)};keys.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();setShown(!shown)}};new IntersectionObserver(function(es){onscreen=es[0].isIntersecting;if(!onscreen){pause()}else if(!user){resume()}}).observe(box);
 render();
 })();
 </script>
