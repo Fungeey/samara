@@ -319,7 +319,8 @@ function takeOver(v){
   if(v!=null)q.value=v;render();
   clearTimeout(idle);idle=setTimeout(function(){user=false;q.value="";q.blur();resume()},8000);
 }
-var P=S.map(function(s,i){var b=document.createElement("div");b.className="pill";b.style.left=s[4]+"%";b.style.top=s[5]+"%";b.style.animationDelay=-i*1.3+"s";b.innerHTML='<i class="dot'+(s[3]?"":" idle")+'"></i>'+s[0];pills.appendChild(b);return b});
+var HIDE=["store/checkout/3/build","store/cart/12/task"];
+var P=S.map(function(s,i){var b=document.createElement("div");b.className="pill";b.style.left=s[4]+"%";b.style.top=s[5]+"%";b.style.animationDelay=-i*1.3+"s";b.innerHTML='<i class="dot'+(s[3]?"":" idle")+'"></i>'+s[0];if(HIDE.indexOf(s[0])<0)pills.appendChild(b);return b});
 q.addEventListener("input",function(){takeOver(null)});
 q.addEventListener("keydown",function(e){if(e.key==="Escape"){q.value="";takeOver(null)}});
 box.addEventListener("pointerdown",function(){if(!user)pause()});
