@@ -10,7 +10,7 @@
 <meta name="description" content="Samara is a macOS box and command over your Claude Code sessions: find any session, start workers, and watch a feature's orchestrator and workers at a glance.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;1,400&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400..700;1,400&family=Reddit+Mono:wght@400..600&display=swap" rel="stylesheet">
 <script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js")</script>
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -18,116 +18,117 @@
 <div class="navbar"><div class="wrap">
   <nav>
     <a class="logo" href="#"><i class="dot"></i>samara<span>›</span></a>
-    <ul>
-      <li><a href="#features">features</a></li>
-      <li><a href="#install">install</a></li>
-      <li><a href="https://github.com/Fungeey/samara/issues">issues</a></li>
-    </ul>
-    <a class="btn sm" href="#download" aria-disabled="true">download</a>
   </nav>
 </div></div>
 <main>
 <div class="wrap">
 
   <header class="hero">
-    <i class="hero-rule" aria-hidden="true"></i>
-    <i class="arc out tr"></i>
-    <h1>orchestration<br>at your <em>fingertips</em></h1>
-    <div class="cta">
-      <a class="btn" href="#download" aria-disabled="true">download for macOS</a>
-      <a class="btn ghost" href="#features">how it works →</a>
+    <h1>Search, steer and <em>orchestrate</em> AI sessions</h1>
+    <div class="keys" id="keys" role="button" tabindex="0" aria-label="Show or hide the search box: Control Option Space"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>Space</kbd></div>
+    <p class="try">Try it now</p>
+    <div class="box demo off" id="box" role="search" aria-label="Search sessions">
+      <div class="box-head"><span class="mag">&#128269;</span><span class="chev">&rsaquo;</span><span class="ghost" id="ghost" aria-hidden="true"></span><input id="q" type="text" aria-label="Search sessions" autocomplete="off" spellcheck="false"></div>
+      <div class="rows" id="rows"></div>
+      <div class="box-foot"><span id="count"></span></div>
     </div>
-    <p class="note">macOS 14 or later · free · coming soon</p>
-    <div class="shot">
-      <video src="assets/walkthrough.mp4" poster="assets/walkthrough-poster.jpg" autoplay muted loop playsinline></video>
+    <div class="pills" id="pills"></div>
+    <div class="cta">
+      <a class="get" href="#download" aria-disabled="true">download for macOS</a>
+    <p class="req">macOS 14+ required</p>
     </div>
   </header>
 </div>
 
+<section class="story">
+  <canvas class="glyphs" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <h2>Stop drowning in chats.<br>Never lose a Claude session again.</h2>
+      <p class="story-sub">All your Claude sessions indexed locally on your computer, searchable in under 10 ms.</p>
+    </div>
+    <div class="facts-win"><ul class="facts" id="facts"><li>indexed locally</li><li>never leaves your computer</li><li>no account, no server</li><li>answers in under 10 ms</li></ul></div>
+  </div>
+</section>
+
+<section class="steer">
+  <div class="wrap">
+    <h2>Don't just search, steer.</h2>
+    <div class="steer-grid">
+      <div class="steer-card">
+        <h3><kbd>→</kbd> to steer that session directly</h3>
+        <p>Type and press Return. Your text goes straight into that session.</p>
+        <div class="shot"><video src="assets/step-talk.mp4" aria-label="A worker's tool calls in the Samara box, with a prompt field to talk to it" autoplay muted loop playsinline></video></div>
+        <p>Full markdown rendering, recent tool calls and a live update of the terminal. We can even render Claude's recaps so you don't lose any context.</p>
+      </div>
+      <div class="steer-card">
+        <h3><kbd>⏎</kbd> to open in terminal</h3>
+        <p>Pressing enter will instantly open your favorite terminal, with that exact session open.</p>
+        <div class="box steer-box">
+          <div class="rows">
+            <div class="row"><i class="dot idle"></i><div><div class="t"><span>store/cart/12/task</span><em>1h ago</em></div><div class="sn">Cart total now updates when a coupon is removed.</div></div></div>
+            <div class="row sel"><i class="dot"></i><div><div class="t"><span>store/checkout/3/build</span><em>4m ago</em></div><div class="sn">Wiring the payment step into the cart summary.</div></div></div>
+            <div class="row"><i class="dot"></i><div><div class="t"><span>store-mobile/login</span><em>2h ago</em></div><div class="sn">Face ID falls back to the passcode screen after two failed scans.</div></div></div>
+          </div>
+        </div>
+        <p>No need to give up your terminal! Samara coordinates all your AI sessions in detached tmux sessions.</p>
+        <ul class="chips">
+          <li><img src="assets/terminals/terminal.png" alt="Terminal"></li>
+          <li><img src="assets/terminals/cmux-dark.png" alt="cmux"></li>
+          <li><img class="mono" src="assets/terminals/ghostty.svg" alt="Ghostty"></li>
+          <li><img class="mono" src="assets/terminals/iterm2.svg" alt="iTerm2"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="features">
-  <i class="arc tl"></i><i class="arc tr"></i><i class="arc out bl"></i>
-  <div class="wrap">
-    <p class="statement">Samara is a box on <kbd>⌃⌥Space</kbd> over all your Claude Code sessions. Find any session, start a worker, and watch a whole feature get built.</p>
-
-    <div class="step">
-      <div class="copy">
-        <h3><span class="n">01</span>see all your work at a glance</h3>
-        <p>Every repo and feature as a dot. Click one to drop into its sessions.</p>
-        <ul class="points">
-          <li><b>Grouped by repo</b> from Claude Code's own session files</li>
-          <li><b>Type to filter</b> features, repos and sessions</li>
-          <li><b>Type <code>&lt;repo&gt; &lt;prompt&gt;</code></b> to start a worker there</li>
-        </ul>
-      </div>
+  <div class="wrap"><h2>Don't just steer, orchestrate.</h2><p class="mono">Graph view</p></div>
+  <div class="carousel" tabindex="0" aria-label="How Samara works">
+    <div class="slide">
       <div class="shot"><video src="assets/step-overview.mp4" aria-label="The Samara box showing repos and features as a graph" autoplay muted loop playsinline></video></div>
+      <p>Every repo and feature as a dot. Click one to drop into its sessions.</p>
     </div>
-
-    <div class="step">
-      <i class="arc out tl"></i>
-      <div class="copy">
-        <h3><span class="n">02</span>watch a feature's workers</h3>
-        <p>Each feature has an orchestrator and numbered workers: scout, scope, build, verify, review, ship.</p>
-        <ul class="points">
-          <li><b>Who handed work to whom</b>, drawn as a graph</li>
-          <li><b>Live status</b> and the last message of the selected worker</li>
-          <li><b>Workers run as</b> <code>claude --bg</code>, watched in tmux</li>
-        </ul>
-      </div>
+    <div class="slide">
       <div class="shot"><video src="assets/step-graph.mp4" aria-label="A feature's orchestrator and workers as a graph" autoplay muted loop playsinline></video></div>
+      <p>Cross-agent orchestration. Each feature has an orchestrator and numbered workers, whichever agents run them.</p>
     </div>
-
-    <div class="step">
-      <i class="arc tr"></i>
-      <div class="copy">
-        <h3><span class="n">03</span>talk to any worker</h3>
-        <p>Type and press return. Your text is sent to the worker, and queues while it is busy.</p>
-        <ul class="points">
-          <li><b>Resume</b> a session that has exited</li>
-          <li><b>Open</b> its terminal with return on an empty field</li>
-          <li><b>Dictate</b> with <kbd>⌘M</kbd></li>
-        </ul>
-      </div>
+    <div class="slide">
       <div class="shot"><video src="assets/step-talk.mp4" aria-label="A worker's tool calls in the Samara box, with a prompt field to talk to it" autoplay muted loop playsinline></video></div>
+      <p>Talk to any worker. Type and press return, and your text goes straight in, queued if the worker is busy.</p>
     </div>
   </div>
+  <div class="dots"><button aria-label="step 1"></button><button aria-label="step 2"></button><button aria-label="step 3"></button></div>
 </section>
 
-<section>
-  <i class="arc bl"></i><i class="arc out tr"></i>
+<section class="more">
   <div class="wrap">
-    <h2>and much much more...</h2>
+    <h2>And much more...</h2>
     <div class="tools">
-      <div class="tool"><h4>a samara command</h4><p>Everything in the box is also a command: list, spawn, prompt, wait, result, graph.</p></div>
-      <div class="tool"><h4>several Claude logins</h4><p>Map repos to accounts. Samara starts and attaches to each job under the right login.</p></div>
-      <div class="tool"><h4>extensions</h4><p>Add your own rows to the box: lists, markdown, PRs, workers.</p></div>
-      <div class="tool"><h4>feature notes</h4><p><kbd>⌘O</kbd> the note, <kbd>⌘P</kbd> the last PR, <kbd>⌘F</kbd> the folder, <kbd>⌘I</kbd> its images.</p></div>
-      <div class="tool"><h4>voice input</h4><p>Hold a thought, press <kbd>⌘M</kbd>, say the prompt.</p></div>
-      <div class="tool"><h4>your terminal</h4><p>Opens in Terminal, iTerm, Ghostty or cmux.</p></div>
-      <div class="tool"><h4>keyboard native</h4><p>Arrow keys move through repos, features and sessions. Return opens the one you pick.</p></div>
-      <div class="tool"><h4>auto routing</h4><p>Type <code>go</code> and then a command. Samara routes it to the repo or feature it matches.</p></div>
-      <div class="tool"><h4>shared workspace</h4><p>Preview images and files from a feature, right in the box.</p></div>
+      <div class="tool"><h4>extensions</h4><p>Add your own rows to the box.</p></div>
+      <div class="tool"><h4>feature notes</h4><p><kbd>⌘O</kbd> the note, <kbd>⌘P</kbd> the last PR.</p></div>
+      <div class="tool"><h4>voice input</h4><p>Press <kbd>⌘M</kbd>, say the prompt.</p></div>
     </div>
   </div>
 </section>
 
-<section id="install" class="band">
-  <i class="arc out tl"></i><i class="arc bl"></i><i class="arc br"></i>
+<section id="install">
   <div class="wrap">
-    <h2>up in a minute</h2>
+    <h2>Up in a minute</h2>
     <p class="sub">Samara builds a small menu-bar app and the <code>samara</code> command, and starts at login.</p>
     <pre>brew install tmux
 ./install</pre>
-    <div class="reqs"><span>macOS 14+</span><span>Claude Code, logged in</span><span>tmux</span></div>
+    <p class="reqs">macOS 14+ · tmux</p>
   </div>
 </section>
 
 </main>
-
 <section class="final" id="download">
   <canvas id="graph" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="veil">
-      <h2>orchestration at your fingertips</h2>
+      <h2>Orchestration at your fingertips</h2>
       <p class="sub">Samara is coming soon.</p>
       <a class="btn" href="#download" aria-disabled="true">download for macOS</a>
     </div>
@@ -137,9 +138,7 @@
 <footer>
   <div class="wrap fcols">
     <div><a class="logo" href="#"><i class="dot"></i>samara<span>›</span></a><p class="copy-r">© 2026 Fungeey. MIT license.</p></div>
-    <div><h5>product</h5><ul><li><a href="#features">features</a></li><li><a href="#install">install</a></li></ul></div>
-    <div><h5>community</h5><ul><li><a href="https://github.com/Fungeey/samara">GitHub</a></li><li><a href="https://github.com/Fungeey/samara/issues">issues</a></li></ul></div>
-    <div><h5>legal</h5><ul><li><a href="https://github.com/Fungeey/samara/blob/main/LICENSE">license</a></li></ul></div>
+    <ul><li><a href="#features">features</a></li><li><a href="#install">install</a></li><li><a href="https://github.com/Fungeey/samara">GitHub</a></li><li><a href="https://github.com/Fungeey/samara/issues">issues</a></li></ul>
   </div>
 </footer>
 <script>
@@ -245,47 +244,154 @@
 </script>
 <script>
 (() => {
-  if (!document.documentElement.classList.contains('js')) return;
-  const h1 = document.querySelector('.hero h1');
-  let i = 0;
-  const split = node => [...node.childNodes].forEach(n => {
-    if (n.nodeType === 3) {
-      const frag = document.createDocumentFragment();
-      n.textContent.split(/(\s+)/).forEach(part => {
-        if (!part) return;
-        if (/^\s+$/.test(part)) return frag.append(part);
-        const w = document.createElement('span');
-        w.className = 'w'; w.setAttribute('aria-hidden', 'true');
-        [...part].forEach(ch => { const s = document.createElement('span'); s.className = 'ch'; s.style.setProperty('--d', Math.round(Math.random() * 400) + 'ms'); s.textContent = ch; w.append(s); });
-        frag.append(w);
-      });
-      n.replaceWith(frag);
-    } else if (n.nodeType === 1 && n.tagName !== 'BR') split(n);
-  });
-  h1.setAttribute('aria-label', h1.innerText.replace(/\s+/g, ' ').trim());
-  split(h1);
-  h1.classList.add('split');
+  const row = document.querySelector('.carousel'), slides = [...row.children], dots = [...document.querySelectorAll('.dots button')];
+  let cur = -1;
+  const gutter = () => parseFloat(getComputedStyle(row).paddingLeft);
+  const set = () => {
+    const edge = row.scrollLeft + gutter();
+    const i = slides.reduce((b, el, k) => Math.abs(el.offsetLeft - edge) < Math.abs(slides[b].offsetLeft - edge) ? k : b, 0);
+    if (i === cur) return;
+    cur = i;
+    slides.forEach((el, k) => { el.classList.toggle('on', k === i); const v = el.querySelector('video'); k === i ? v.play().catch(() => {}) : v.pause(); });
+    dots.forEach((d, k) => d.classList.toggle('on', k === i));
+  };
+  const go = k => row.scrollTo({ left: slides[k].offsetLeft - gutter(), behavior: 'smooth' });
+  const loop = () => {
+    const out = slides[cur].animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill: 'forwards' });
+    out.onfinish = () => {
+      row.style.scrollSnapType = 'none';
+      row.scrollLeft = slides[0].offsetLeft - gutter();
+      row.style.scrollSnapType = '';
+      out.cancel();
+      slides[0].animate([{ opacity: 0 }, { opacity: 1 }], { duration: 250 });
+    };
+  };
+  const next = () => cur === slides.length - 1 ? loop() : go(cur + 1);
+  let timer, resume, seen = false, reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const tick = () => { clearInterval(timer); if (!reduced && seen) timer = setInterval(next, 4000); };
+  const pause = () => { clearInterval(timer); clearTimeout(resume); resume = setTimeout(tick, 5000); };
+  new IntersectionObserver(([e]) => { seen = e.isIntersecting; tick(); }).observe(row);
+  ['pointerdown', 'wheel', 'keydown'].forEach(t => row.addEventListener(t, pause, { passive: true }));
+  dots.forEach((d, k) => d.onclick = () => { pause(); go(k); });
+  slides.forEach((el, k) => el.onclick = () => { pause(); go(k); });
+  row.addEventListener('scroll', set, { passive: true });
+  row.addEventListener('keydown', e => { const k = cur + (e.key === 'ArrowRight') - (e.key === 'ArrowLeft'); if (k !== cur && slides[k]) { e.preventDefault(); go(k); } });
+  addEventListener('resize', set); set();
+})();
+</script>
+<script>
+(function(){
+var S=window.SESSIONS=[
+["store/checkout/3/build","4m ago","Wiring the payment step into the cart summary. The card form posts to the new payments endpoint, and the order total is re-checked on the server before the charge goes through. Next: the receipt email.",1,6,22],
+["store/cart/12/task","1h ago","Cart total now updates when a coupon is removed. The discount line used to stay until a page refresh, because the cart store kept a stale copy of the coupon list. Added a test for stacking two coupons.",1,80,16],
+["store-mobile/login","2h ago","Face ID falls back to the passcode screen after two failed scans. Saved logins are read from the keychain on launch, and the session token is refreshed in the background when the app returns from sleep.",1,10,58],
+["store/inventory/7/verify","3h ago","Stock counts match the warehouse export, verify passed. Compared 1,204 SKUs against the nightly CSV and found no drift. The three products flagged earlier were returns that had not been restocked yet.",0,76,50],
+["store-docs/api","5h ago","Reference for the orders endpoint is drafted. Covers create, list and cancel, with request and response examples for each. The pagination section still needs the cursor format spelled out before review.",1,22,80],
+["store-mobile/push","2d ago","Push notifications arrive twice on older iOS builds. The handler registers once at launch and again on foreground, so each message is delivered to both. Fix is to register only in the app delegate.",0,72,78],
+["store/search/21/task","6d ago","Added a verify step before indexing new products. Items without a price or an image are skipped and logged instead of landing in the search index, which was returning empty cards for about 40 products.",0,4,38],
+["store-docs/guides","9d ago","Getting started guide covers the cart and checkout flow. Each step has a short code sample and a screenshot of the finished page. Left a note to add the mobile login walkthrough once that ships.",1,76,32]
+];
+var pills=document.getElementById("pills"),box=document.getElementById("box"),ghost=document.getElementById("ghost"),q=document.getElementById("q"),rows=document.getElementById("rows"),count=document.getElementById("count");
+function esc(t){return t.replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
+function hl(t,v){if(!v)return esc(t);var i=t.toLowerCase().indexOf(v);return i<0?esc(t):esc(t.slice(0,i))+"<b>"+esc(t.slice(i,i+v.length))+"</b>"+esc(t.slice(i+v.length))}
+function hit(s,v){return !v||(s[0]+" "+s[2]).toLowerCase().indexOf(v)>=0}
+function render(){var v=q.value.trim().toLowerCase(),n=0;rows.innerHTML="";S.forEach(function(s,i){var ok=hit(s,v);P[i].classList.toggle("off",!ok);if(!ok)return;n++;var r=document.createElement("div");r.className="row"+(n==1?" sel":"");r.innerHTML='<i class="dot'+(s[3]?"":" idle")+'"></i><div><div class="t"><span>'+esc(s[0])+'</span><em>'+s[1]+'</em></div><div class="sn">'+hl(s[2],v)+'</div></div>';rows.appendChild(r)});count.textContent=n+" session"+(n==1?"":"s")}
+function show(v){q.value=v;ghost.innerHTML=esc(v)+'<i class="caret"></i>';render()}
+var shown=false;
+var WORDS=["login","pagination","verify","coupon"],gen=0,user=false,onscreen=true,idle,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
+async function play(){
+  var my=++gen,i=0;
+  show("");
+  while(my===gen){
+    var w=WORDS[i++%WORDS.length];
+    await wait(900);
+    for(var k=1;k<=w.length;k++){if(my!==gen)return;show(w.slice(0,k));await wait(80+Math.random()*70)}
+    await wait(1800);
+    for(var k=w.length-1;k>=0;k--){if(my!==gen)return;show(w.slice(0,k));await wait(45)}
+    await wait(700);
+  }
+}
+function pause(){gen++}
+function resume(){clearTimeout(idle);if(reduce||user||!onscreen||!shown)return;box.classList.add("demo");play()}
+function takeOver(v){
+  pause();user=true;box.classList.remove("demo");
+  if(v!=null)q.value=v;render();
+  clearTimeout(idle);idle=setTimeout(function(){user=false;q.value="";q.blur();resume()},8000);
+}
+var P=S.map(function(s,i){var b=document.createElement("div");b.className="pill";b.style.left=s[4]+"%";b.style.top=s[5]+"%";b.style.animationDelay=-i*1.3+"s";b.innerHTML='<i class="dot'+(s[3]?"":" idle")+'"></i>'+s[0];pills.appendChild(b);return b});
+q.addEventListener("input",function(){takeOver(null)});
+q.addEventListener("keydown",function(e){if(e.key==="Escape"){q.value="";takeOver(null)}});
+box.addEventListener("pointerdown",function(){if(!user)pause()});
+box.addEventListener("mouseup",function(){if(!user)takeOver("");q.focus({preventScroll:true})});
+function setShown(on){
+  shown=on;box.classList.toggle("off",!on);pause();clearTimeout(idle);user=false;q.blur();
+  if(!on){q.value="";render();return}
+  if(reduce){q.value="login";render()}else{box.classList.add("demo");show("");resume()}
+}
+document.addEventListener("keydown",function(e){if(e.code==="Space"&&e.altKey&&(e.ctrlKey||e.metaKey)){e.preventDefault();setShown(!shown)}});
+var keys=document.getElementById("keys");keys.onclick=function(){setShown(!shown)};keys.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();setShown(!shown)}};
+new IntersectionObserver(function(es){onscreen=es[0].isIntersecting;if(!onscreen){pause()}else if(!user){resume()}}).observe(box);
+render();
 })();
 </script>
 <script>
 (() => {
-  const root = document.documentElement;
-  if (!root.classList.contains('js')) return;
-  const once = (els, opts, fn) => {
-    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { fn(e.target); io.unobserve(e.target); } }), opts);
-    els.forEach(el => io.observe(el));
-  };
-  document.querySelectorAll('section,footer').forEach(s => s.prepend(Object.assign(document.createElement('i'), { className: 'hr' })));
-  once(document.querySelectorAll('section,footer'), { threshold: 0, rootMargin: '0px 0px -12% 0px' }, el => el.classList.add('in'));
-  once(document.querySelectorAll('.hero'), { threshold: 0 }, el => el.classList.add('in'));
-  once(document.querySelectorAll('.step'), { threshold: 0.1 }, el => el.classList.add('in'));
-  once(document.querySelectorAll('.arc'), { threshold: 0 }, el => el.classList.add('in'));
-  const targets = document.querySelectorAll('.statement,.step .copy,.step .shot,section h2');
-  targets.forEach(el => {
-    el.style.setProperty('--d', el.matches('.shot') ? '.1s' : '0s');
-    el.classList.add('reveal');
+  const ul = document.getElementById('facts'), N = ul.children.length;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  ul.classList.add('roll');
+  for (let k = 0; k < 2; k++) [...ul.children].slice(0, N).forEach(li => ul.append(li.cloneNode(true)));
+  const lis = [...ul.children], row = () => lis[0].offsetHeight;
+  let i = N, on = false;
+  const show = (anim) => { ul.style.transition = anim ? '' : 'none'; ul.style.transform = `translateY(${-(i - 1) * row()}px)`; lis.forEach((li, k) => li.classList.toggle('on', k === i)); };
+  show(false);
+  ul.addEventListener('transitionend', () => { if (i >= 2 * N) { i -= N; show(false); } });
+  setInterval(() => { if (on) { i++; show(true); } }, 2400);
+  new IntersectionObserver(([e]) => on = e.isIntersecting).observe(ul);
+  addEventListener('resize', () => show(false));
+})();
+</script>
+<script>
+(() => {
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const S = window.SESSIONS, F = 13, CW = F * .6, LH = F * 1.7;
+  const chunks = S.flatMap(s => [s[0], ...s[2].split(/(?<=[.,])\s+/).map(t => t.replace(/[.,]$/, ''))]).filter(t => t.length > 3).map(t => t.toUpperCase());
+  document.querySelectorAll('canvas.glyphs').forEach((cv, n) => {
+    const out = cv.getContext('2d'), sec = cv.parentElement, tile = document.createElement('canvas'), ctx = tile.getContext('2d');
+    let off = 0, last = 0, running = false, dpr = 1;
+    function draw() {
+      const css = getComputedStyle(document.documentElement), rgb = k => css.getPropertyValue(k).trim();
+      const ink = rgb('--ink') === '#fff' ? '255,255,255' : '42,44,41';
+      dpr = devicePixelRatio || 1; const w = sec.clientWidth, h = sec.clientHeight, rows = Math.max(1, Math.floor(h / LH)), cols = Math.floor(w / CW);
+      cv.width = w * dpr; cv.height = h * dpr; tile.width = cols * CW * dpr; tile.height = rows * LH * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.font = F + 'px "JetBrains Mono",ui-monospace,Menlo,monospace'; ctx.textBaseline = 'middle';
+      let seed = 7 + n * 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+      let i = Math.floor(rnd() * chunks.length), line = [];
+      for (let r = 0; r < rows; r++) {
+        while (line.length < cols) { const a = .05 + rnd() * .06; for (const ch of chunks[i++ % chunks.length] + ' ') line.push([ch, a]); }
+        for (let c = 0; c < cols; c++) {
+          if (line[c][0] === ' ') continue;
+          ctx.fillStyle = `rgba(${ink},${line[c][1]})`;
+          ctx.fillText(line[c][0], c * CW, (r + .5) * LH);
+        }
+        line = line.slice(cols);
+      }
+    }
+    function paint() {
+      const tw = tile.width, lh = LH * dpr, rows = Math.round(tile.height / lh);
+      out.clearRect(0, 0, cv.width, cv.height);
+      for (let r = 0; r < rows; r++) {
+        const o = (r % 2 ? off : tw - off % tw) % tw;
+        for (let x = -o; x < cv.width; x += tw) out.drawImage(tile, 0, r * lh, tw, lh, x, r * lh, tw, lh);
+      }
+    }
+    function loop(t) {
+      off += (t - last) * .004 * dpr; last = t; paint();
+      if (running) requestAnimationFrame(loop);
+    }
+    new ResizeObserver(() => { draw(); paint(); }).observe(sec);
+    if (!still) new IntersectionObserver(([e]) => { running = e.isIntersecting; if (running) { last = performance.now(); requestAnimationFrame(loop); } }).observe(sec);
   });
-  once(targets, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }, el => el.classList.add('in'));
 })();
 </script>
 </body></html>
