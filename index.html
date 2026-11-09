@@ -27,7 +27,10 @@
     <h1>Spotlight <em>search</em> over<br class="desk"> all your AI sessions</h1>
     <div class="keys" id="keys" role="button" tabindex="0" aria-label="Show or hide the search box: Control Option Space"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>Space</kbd><span class="or">or</span><kbd>click me</kbd></div>
     <div class="box demo off" id="box" role="search" aria-label="Search sessions">
-      <div class="box-head"><span class="mag">&#128269;</span><span class="chev">&rsaquo;</span><span class="ghost" id="ghost" aria-hidden="true"></span><input id="q" type="text" aria-label="Search sessions" autocomplete="off" spellcheck="false"></div>
+      <div class="box-head">
+          <svg xmlns="http://www.w3.org/2000/svg" class="mag" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+          <span class="ghost" id="ghost" aria-hidden="true"></span><input id="q" type="text" aria-label="Search sessions" autocomplete="off" spellcheck="false">
+      </div>
       <div class="rows" id="rows"></div>
       <div class="box-foot"><span id="count"></span></div>
     </div>
@@ -52,7 +55,7 @@
 
 <section class="steer">
   <div class="wrap">
-    <h2>Don't just search, steer.</h2>
+    <h2>Don't just search, <span class="emphasis">steer</span>.</h2>
     <div class="steer-grid">
       <div class="steer-card">
         <h3><kbd>→</kbd> to open an agent</h3>
@@ -83,7 +86,7 @@
 </section>
 
 <section id="features">
-  <div class="wrap"><h2>Don't just steer, orchestrate.</h2><p class="mono">Graph view</p></div>
+  <div class="wrap"><h2>Don't just steer, <span class="emphasis">orchestrate</span>.</h2><p class="mono">Graph view</p></div>
   <div class="carousel" tabindex="0" aria-label="How Samara works">
     <div class="slide">
       <div class="shot"><video src="assets/step-overview.mp4" aria-label="The Samara box showing repos and features as a graph" autoplay muted loop playsinline></video></div>
@@ -103,7 +106,7 @@
 
 <section class="more">
   <div class="wrap">
-    <h2>And much more...</h2>
+    <h2>And <span class="emphasis">much more</span>...</h2>
     <div class="tools">
       <div class="tool"><h4>voice input</h4><p>On-device speech to text, from Apple's SpeechAnalyzer.</p></div>
       <div class="tool"><h4>view images and markdown</h4><p>Open screenshots and <code>.md</code> files right in the box.</p></div>
@@ -197,7 +200,7 @@
   }
   function drawRun(run, tt) {
     const A_ = run.alpha, col = GREEN, green = a => `rgba(${col[0]},${col[1]},${col[2]},${a * A_})`;
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 2.5;
     for (const e of run.edges) {
       const p = e.back ? 1 : clamp((tt - e.at) / GROW), fade = age(run, tt, e.at); if (!p || !fade) continue;
       const pts = curve(run, e), A = pts[0], B = pts[3], ra = r * (e.from ? 1 : 2) + 3, rb = r + 5;
@@ -206,7 +209,6 @@
       const d = Math.hypot(tip.x - prev.x, tip.y - prev.y) || 1, ux = (tip.x - prev.x) / d, uy = (tip.y - prev.y) / d;
       ctx.strokeStyle = ctx.fillStyle = `rgba(${GREY[0]},${GREY[1]},${GREY[2]},${.75 * fade * A_})`; ctx.setLineDash(e.back ? [4, 4] : []);
       ctx.beginPath(); line.slice(0, m).forEach((q, i) => i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y)); ctx.stroke(); ctx.setLineDash([]);
-      ctx.beginPath(); ctx.moveTo(tip.x + ux * 6, tip.y + uy * 6); ctx.lineTo(tip.x - ux * 2 - uy * 4, tip.y - uy * 2 + ux * 4); ctx.lineTo(tip.x - ux * 2 + uy * 4, tip.y - uy * 2 - ux * 4); ctx.fill();
     }
     run.nodes.forEach((n, i) => {
       const p = pos(n.c, n.k), fade = age(run, tt, n.at), l = tt >= n.at ? 1 : 0;
