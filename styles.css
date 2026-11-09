@@ -90,7 +90,7 @@ footer a:hover{color:var(--leaf-d)}
 .pill .dot.idle,.row .dot.idle{background:#ffd60a}
 @keyframes bob{50%{transform:translateY(-10px)}}
 .box{width:min(640px,92vw);aspect-ratio:3/2;background:rgba(28,30,28,.92);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);text-align:left;color:#fff;font-family:-apple-system,system-ui,sans-serif;overflow:hidden}
-.box-head{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:18px;font-weight:300;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom: 10px;}
+.box-head{display:flex;align-items:center;gap:10px;padding:16px 16px;font-size:18px;font-weight:300;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom: 10px;}
 .box-head .chev{opacity:.55}.box-head .mag{width:20px;height:20px;fill:var(--ink);opacity:.55}
 .box-head input{flex:1;background:none;border:0;outline:0;color:#fff;font:inherit}
 .rows{height:320px;overflow:hidden;padding:0 10px}
