@@ -94,7 +94,7 @@ footer a:hover{color:var(--leaf-d)}
 .box-head .chev{opacity:.55}.box-head .mag{width:20px;height:20px;fill:var(--ink);opacity:.55}
 .box-head input{flex:1;background:none;border:0;outline:0;color:#fff;font:inherit}
 .rows{height:320px;overflow:hidden;padding:0 10px}
-.row{display:flex;gap:12px;padding:10px 12px;border-radius:10px}
+.row{display:flex;gap:12px;padding:10px 12px;border-radius:6px}
 .row.sel{background:rgba(255,255,255,.1)}
 .row .dot{flex:none;margin-top:8px;width:8px;height:8px}
 .row>div{min-width:0;flex:1}
