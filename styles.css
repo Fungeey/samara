@@ -112,7 +112,7 @@ footer a:hover{color:var(--leaf-d)}
 .ghost,.box-head input{line-height:24px;height:24px}
 .hero h1{text-wrap:balance;max-width:16em}
 .hero .keys{display:flex;gap:6px;margin-top:24px;cursor:pointer}
-.hero .keys kbd{color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-bottom-width:2px;border-radius:6px;padding:1px 8px;font:500 11px/1.4 ui-monospace,Menlo,monospace}
+.hero .keys kbd{color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-bottom-width:2px;border-radius:6px;padding:1px 8px;font:500 14px/1.4 ui-monospace,Menlo,monospace}
 .hero .box{margin-top:44px;transition:opacity .25s,transform .25s,visibility 0s}
 .hero .box.off{opacity:0;transform:translateY(-8px);visibility:hidden;pointer-events:none;transition:opacity .25s,transform .25s,visibility 0s .25s}
 .hero .try{margin:6px 0 0;font-size:12px;color:#fff}
